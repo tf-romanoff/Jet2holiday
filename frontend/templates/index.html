@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Jet2Holiday</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header>
+    <div>✈️</div>
+    <div>
+      <h1>Jet2Holiday</h1>
+      <span>Book your dream flight</span>
+    </div>
+  </header>
+  <div class="container">
+    <div class="card">
+      <img src="{{ url_for('static', filename='aircraft.webp') }}" alt="항공" width="400">
+      <div class="flight-card">
+        <div class="flight-info">
+          <h2>Seoul → {{ flight.to }}</h2>
+          <p>Nothing beats a jet2 holiday ✈️</p>
+          <p>Right now, you can save 50% off the price!</p>
+        </div>
+        <div style="text-align:right;">
+          <div class="price">{{ flight.price }}원</div>
+          <a href="/buy" class="btn" style="margin-top:12px; display:block;">구매하기</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
