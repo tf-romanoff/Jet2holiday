@@ -1,33 +1,16 @@
-version: '3.8'
+version: "3.8"
 
 services:
-  nginx:
-    image: nginx:1.18
+  app:
+    build: ./app
     ports:
-      - "80:80"
+      - "3000:3000"
     volumes:
-      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
-    depends_on:
-      - frontend
-      - backend
+      - ./flag.txt:/app/flag.txt:ro
+    restart: unless-stopped
     networks:
-      - public_net
-      - internal_net
-
-  frontend:
-    build: ./frontend
-    networks:
-      - public_net
-      - internal_net
-  
-  backend:
-    build: ./backend
-    networks:
-      - internal_net 
+      - app_net
 
 networks:
-  public_net:
+  app_net:
     driver: bridge
-  internal_net:
-    driver: bridge
-    internal: true
